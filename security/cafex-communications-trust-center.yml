@@ -1,0 +1,70 @@
+generated: '2026-08-08'
+method: searched
+probe: true
+url: https://trust.cafex.ai/
+aliases:
+- https://trust.cafex.com/
+platform: Vanta Trust Center
+platform_note: >-
+  The trust center is a Vanta-hosted, client-rendered single-page app (assets.vanta.com,
+  data-slugid mksnhe97jw17qxrzg8553). Its certification list is not present in the served HTML, so
+  the certifications below are taken from CafeX's own published security datasheet and the
+  compliance badges rendered on cafex.ai — not inferred from the trust center shell.
+certifications:
+- name: ISO 27001
+  source: https://cafex.ai/asset/svg/iso-27001.svg
+  also: https://support.cafex.com/support/solutions/articles/73000179994-cafex-security-datasheet
+- name: SOC 2
+  source: https://cafex.ai/asset/svg/soc-2.svg
+- name: ISO 42001
+  source: https://cafex.ai/asset/svg/iso-42001.svg
+  note: AI management system standard
+regulatory_posture:
+- name: HIPAA
+  statement: Executes Business Associate Agreements (BAA) with covered entities.
+- name: GDPR / UK data protection
+  statement: Registered with the UK Information Commissioner's Office (ICO).
+- name: EU-U.S. Data Privacy Framework
+  statement: Complies with the EU-U.S. DPF, the UK Extension, and the Swiss-U.S. DPF.
+security_practices:
+  hosting: Amazon Web Services (AWS)
+  encryption_in_transit: Industry best-practice protocols between users and CafeX servers.
+  encryption_at_rest: >-
+    Encrypted at rest on AWS, with runtime field-level encryption, dual key management and
+    tenant-specific keys.
+  penetration_testing: Third-party penetration testing experts engaged.
+  vulnerability_scanning: Regular dynamic vulnerability scanning plus static code analysis of source repositories.
+  identity: SSO and MFA supported; tenants can enforce their own MFA policies.
+contacts:
+  compliance: compliance@cafex.com
+documents:
+- name: CafeX Security Datasheet
+  url: https://support.cafex.com/support/solutions/articles/73000179994-cafex-security-datasheet
+  access: public
+evidence:
+- source: https://trust.cafex.ai/
+  http_status: 200
+  keywords:
+  - trust center
+  - security
+  - privacy
+  - compliance
+- source: https://support.cafex.com/support/solutions/articles/73000179994-cafex-security-datasheet
+  http_status: 200
+  keywords:
+  - iso 27001
+  - hipaa
+  - gdpr
+  - data privacy framework
+- source: https://cafex.ai/
+  http_status: 200
+  keywords:
+  - iso-27001
+  - soc-2
+  - iso-42001
+x-evidence:
+  fetched: '2026-08-08'
+  control_probe:
+    url: https://bogus-control-xyz.cafex.ai/
+    result: NXDOMAIN
+    note: no wildcard DNS, so trust.cafex.ai resolving is a real host and not a catch-all

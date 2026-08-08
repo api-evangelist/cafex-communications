@@ -42,5 +42,32 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-CafeX Communications is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/cafex-communications_stock/
+CafeX Communications, Inc. (founded 2013) builds a low-code platform for developing intelligent
+applications and agentic systems for regulated industries — banking, insurance, healthcare and
+government. The CafeX AI platform is delivered as multi-tenant SaaS at `app.cafex.com` and is
+organised into App Studio (App Builder, Flow Builder, Rule Builder, Data Tables, API Lab), Data
+Studio (Data AI, Data Gateway, Data Visualizer) and Agent Studio (Agent Builder, LM Insights).
+CafeX began as a WebRTC and embedded-communications vendor (Fusion Client, Live Assist, CafeX
+Meetings, later the Challo collaboration workspace) and has since repositioned around AI workflow
+and process automation.
+
+## Public API surface
+
+CafeX publishes one public, callable API:
+
+- **CafeX Audit Events API** — `POST https://app.cafex.com/audit-search-rest/search`, a tenant-scoped
+  JSON search over audit event data, secured with an OAuth 2.0 client-credentials bearer token from
+  `POST https://auth.cafex.com/authserver/token`. Cursor pagination (`page.continuationToken`,
+  `pageSize` max 100), ISO 8601 timestamps, one-year event retention, eight-hour access tokens.
+  Both endpoints were confirmed live by anonymous probe on 2026-08-08.
+
+CafeX publishes **no** OpenAPI, AsyncAPI, GraphQL SDL, MCP server or A2A agent card, and no
+`/.well-known/` discovery document on any host. The API contract exists only as prose in a help
+center article. Note that `app.cafex.com` answers HTTP 200 with an SPA HTML shell for every
+`/.well-known/*` path — those are not documents.
+
+- Website: https://cafex.ai/ (cafex.com redirects here)
+- Help center: https://support.cafex.com/support/solutions
+- Status: https://status.cafex.ai/ · Trust center: https://trust.cafex.ai/
+- GitHub: https://github.com/cafexcomms (5 legacy WebRTC repos, none updated since 2022)
+- Secondary-market listing: https://forgeglobal.com/cafex-communications_stock/

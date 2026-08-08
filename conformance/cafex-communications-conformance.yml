@@ -1,0 +1,105 @@
+generated: '2026-08-08'
+method: searched
+source: https://support.cafex.com/support/solutions/articles/73000645442-accessing-audit-information-programmatically
+note: >-
+  CafeX publishes no machine-readable API contract, so nothing here is derived from a spec. Each
+  entry is asserted only where a published statement or a live probe supports it; everything else
+  is recorded as conforms:false with the reason.
+standards:
+- id: oauth2-client-credentials
+  spec: RFC 6749 section 4.4
+  conforms: true
+  evidence: >-
+    POST https://auth.cafex.com/authserver/token with grant_type=client_credentials, client_id and
+    client_secret as application/x-www-form-urlencoded; returns access_token. Anonymous probe
+    returned the RFC 6749 section 5.2 error object {"error":"invalid_client"}.
+- id: oauth2-bearer-token-usage
+  spec: RFC 6750
+  conforms: true
+  evidence: 'Documented as Authorization: Bearer {ACCESS TOKEN HERE} on the Audit Events API.'
+- id: oauth2-authorization-server-metadata
+  spec: RFC 8414
+  conforms: false
+  evidence: https://auth.cafex.com/.well-known/oauth-authorization-server returns 404.
+- id: openid-connect-discovery
+  spec: OpenID Connect Discovery 1.0
+  conforms: false
+  evidence: https://auth.cafex.com/.well-known/openid-configuration returns 404.
+- id: iso8601-datetime
+  spec: ISO 8601
+  conforms: true
+  evidence: >-
+    The API documents ISO 8601 for all request and response timestamps, defaulting to UTC when no
+    offset is supplied, and returns full ISO 8601 with offset.
+- id: rfc9457-problem-details
+  spec: RFC 9457
+  conforms: false
+  evidence: >-
+    Error bodies are application/json with timestamp/status/error/path members, not
+    application/problem+json.
+- id: cursor-pagination
+  conforms: true
+  evidence: page.pageSize (max 100) plus an opaque page.continuationToken echoed between requests.
+- id: idempotency-keys
+  conforms: false
+  evidence: No idempotency key or retry contract is documented.
+- id: rfc9116-security-txt
+  spec: RFC 9116
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on cafex.ai, auth.cafex.com and status.cafex.ai.
+- id: rfc8594-sunset-header
+  spec: RFC 8594
+  conforms: false
+  evidence: No deprecation policy or Sunset header commitment is published.
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI/Swagger document found at any probed location on cafex.ai, app.cafex.com,
+    auth.cafex.com or support.cafex.com.
+- id: mcp
+  spec: Model Context Protocol
+  conforms: false
+  evidence: >-
+    No CafeX MCP server. support.cafex.com/mcp returns 401 but is Freshworks help-center
+    infrastructure — support.freshdesk.com/mcp returns the identical response.
+- id: a2a-agent-card
+  spec: A2A 1.0.0
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json return 404 on cafex.ai,
+    auth.cafex.com, status.cafex.ai and support.cafex.com. app.cafex.com answers 200 with the SPA
+    HTML shell for every /.well-known/* path and is therefore not a hit.
+compliance_programs:
+- id: iso-27001
+  published: true
+  evidence: Badge on https://cafex.ai/ and stated in the CafeX Security Datasheet.
+- id: soc-2
+  published: true
+  evidence: Badge on https://cafex.ai/
+- id: iso-42001
+  published: true
+  evidence: Badge on https://cafex.ai/
+- id: hipaa
+  published: true
+  evidence: 'Security Datasheet: executes Business Associate Agreements with covered entities.'
+- id: gdpr-uk-ico
+  published: true
+  evidence: 'Security Datasheet: registered with the UK Information Commissioner''s Office.'
+- id: eu-us-data-privacy-framework
+  published: true
+  evidence: 'Security Datasheet: complies with EU-U.S. DPF, UK Extension and Swiss-U.S. DPF.'
+trust_center: security/cafex-communications-trust-center.yml
+x-evidence:
+- url: https://auth.cafex.com/authserver/token
+  http_status: 400
+  fetched: '2026-08-08'
+- url: https://auth.cafex.com/.well-known/openid-configuration
+  http_status: 404
+  fetched: '2026-08-08'
+- url: https://support.cafex.com/mcp
+  http_status: 401
+  fetched: '2026-08-08'
+- url: https://support.freshdesk.com/mcp
+  http_status: 401
+  fetched: '2026-08-08'
+  note: control probe proving the /mcp endpoint is vendor infrastructure, not CafeX's

@@ -1,0 +1,85 @@
+generated: '2026-08-08'
+method: searched
+source: https://status.cafex.ai/
+versioning:
+  scheme: none-published
+  current: null
+  docs: null
+  note: >-
+    The Audit Events API path carries no version segment and CafeX publishes no API versioning
+    policy. In-product release management (App Studio "Release Management") governs customer-built
+    apps, not the CafeX platform API.
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  note: >-
+    No deprecation policy, no Sunset/Deprecation header commitment (RFC 8594) and no end-of-life
+    schedule is published. No Deprecation pointer is emitted.
+  historical_note: >-
+    CafeX has retired earlier developer surfaces (Fusion Client / Live Assist WebRTC SDKs, the
+    CafeX Meetings mobile SDKs, and the Challo-branded collaboration product) without a public
+    deprecation record; the CafeX-Meetings CocoaPod has had no release since 2018-04-19.
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No public SLA document. The status page reports 100.0% uptime over the trailing 90 days across
+    all listed components, but publishes no contractual target.
+status_page:
+  url: https://status.cafex.ai/
+  provider: Instatus
+  aliases:
+  - https://status.cafex.com/
+  api: https://status.cafex.ai/summary.json
+  feeds:
+  - https://status.cafex.ai/history.rss
+  subscriptions:
+  - email
+  - slack
+  - microsoft-teams
+  - google-chat
+  - webhook
+  components:
+  - group: CafeX Platform
+    items:
+    - Workflows
+    - Workspace Asset Integrations
+    - CafeX Apps
+  - group: Auth
+    items:
+    - CafeX Auth
+    - Google Authentication
+    - Microsoft Authentication
+    - Microsoft Cloud for US Government Authentication
+    - Apple Authentication
+changelog:
+  url: null
+  note: >-
+    No dated public changelog or release-notes feed was found on cafex.ai, the Freshdesk help
+    center, or the status page (incident history is empty). No ChangeLog artifact is emitted.
+data_retention:
+  audit_events: 1 year
+  source: https://support.cafex.com/support/solutions/articles/73000645442-accessing-audit-information-programmatically
+token_lifetime:
+  access_token: 8h
+deprecated_operations: []
+x-evidence:
+- url: https://status.cafex.ai/
+  http_status: 200
+  fetched: '2026-08-08'
+- url: https://status.cafex.ai/summary.json
+  http_status: 200
+  fetched: '2026-08-08'
+  body: '{"page":{"name":"Cafex","url":"https://status.cafex.ai","status":"UP"}}'
+- url: https://status.cafex.ai/history.rss
+  http_status: 200
+  content_type: text/xml
+  fetched: '2026-08-08'
+- url: https://status.cafex.com/
+  http_status: 200
+  fetched: '2026-08-08'
+  note: redirects to https://status.cafex.ai/
+- url: https://cafex.ai/definitely-not-a-real-page-xyz
+  http_status: 404
+  fetched: '2026-08-08'
+  note: control probe — cafex.ai returns a real 404, so the 200s above are genuine pages

@@ -1,0 +1,86 @@
+generated: '2026-08-08'
+method: probed
+source: live anonymous HTTP probes
+found: 0
+summary: >-
+  No /.well-known/ discovery document is served by CafeX on any host. Every candidate path was
+  probed on the marketing host (cafex.ai), the product/API host (app.cafex.com), the authorization
+  server (auth.cafex.com), the documentation host (support.cafex.com) and the status host
+  (status.cafex.ai). Because nothing was found, no WellKnown, SecurityTxt, APICatalog or AgentCard
+  pointer is wired into apis.yml.
+false_positives:
+  host: app.cafex.com
+  behaviour: >-
+    app.cafex.com is a single-page application whose catch-all returns HTTP 200 with the same
+    3,855-byte HTML shell (<title>CafeX</title>) for every /.well-known/* path, including
+    openid-configuration, oauth-authorization-server and api-catalog. These are NOT discovery
+    documents and are recorded as false positives, not hits.
+  control: >-
+    auth.cafex.com, by contrast, returns an honest Tomcat 404 for the same paths, confirming the
+    app-host 200s are shell responses.
+vendor_infrastructure:
+  path: https://support.cafex.com/mcp
+  status: 401
+  www_authenticate: Bearer resource_metadata="https://support.cafex.com/.well-known/oauth-protected-resource/mcp"
+  finding: >-
+    Not a CafeX MCP server. The identical 401 {"error":"unauthorized"} is returned by
+    support.freshdesk.com/mcp, so this is Freshworks help-center platform infrastructure served on
+    the customer subdomain. Not credited to CafeX.
+hosts:
+- host: https://cafex.ai
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /llms.txt, status: 404}
+  - {path: /openapi.json, status: 404}
+  - {path: /swagger.json, status: 404}
+  - {path: /openapi.yaml, status: 404}
+- host: https://app.cafex.com
+  note: SPA catch-all — 200s below are HTML shells, not documents
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 200, valid: false, reason: html-spa-shell}
+  - {path: /.well-known/oauth-authorization-server, status: 200, valid: false, reason: html-spa-shell}
+  - {path: /.well-known/api-catalog, status: 200, valid: false, reason: html-spa-shell}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /audit-search-rest/openapi.json, status: 404}
+  - {path: /audit-search-rest/swagger.json, status: 404}
+  - {path: /audit-search-rest/v3/api-docs, status: 200, valid: false, reason: html-spa-shell}
+  - {path: /audit-search-rest/v2/api-docs, status: 200, valid: false, reason: html-spa-shell}
+  - {path: /audit-search-rest/swagger-ui.html, status: 404}
+- host: https://auth.cafex.com
+  documents:
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /authserver/.well-known/openid-configuration, status: 404}
+  - {path: /authserver/.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /llms.txt, status: 404}
+  - {path: /openapi.json, status: 404}
+  - {path: /swagger.json, status: 404}
+  - {path: /v3/api-docs, status: 404}
+  - {path: /v2/api-docs, status: 404}
+- host: https://support.cafex.com
+  documents:
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /llms.txt, status: 404}
+- host: https://status.cafex.ai
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /llms.txt, status: 404}
+  - {path: /summary.json, status: 200, note: Instatus status API, not a well-known document}
+x-evidence:
+  fetched: '2026-08-08'
+  method: curl anonymous GET, redirects followed

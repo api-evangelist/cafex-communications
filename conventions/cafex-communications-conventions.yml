@@ -1,0 +1,113 @@
+generated: '2026-08-08'
+method: searched
+source: https://support.cafex.com/support/solutions/articles/73000645442-accessing-audit-information-programmatically
+scope: >-
+  Cross-cutting request/response semantics for the CafeX Audit Events API, the only publicly
+  documented CafeX API. Transcribed from the published reference and confirmed with live
+  anonymous probes. CafeX publishes no OpenAPI document.
+authentication:
+  style: oauth2-client-credentials + bearer
+  header: 'Authorization: Bearer {ACCESS TOKEN HERE}'
+  token_url: https://auth.cafex.com/authserver/token
+  token_lifetime: 8h
+  artifact: authentication/cafex-communications-authentication.yml
+request:
+  transport: HTTPS
+  verb: POST
+  content_type: application/json
+  note: The search operation is a POST with a JSON body rather than a GET with query parameters.
+pagination:
+  style: cursor
+  request_object: page
+  request_fields:
+  - name: pageSize
+    type: integer
+    max: 100
+    required: true
+  - name: continuationToken
+    type: string
+    required: false
+    description: Returned by a previous response when more results exist; echo it back to page forward.
+  response_object: page
+  response_fields:
+  - pageSize
+  - continuationToken
+  end_of_results: Absence of continuationToken in the response page object means no further results.
+sorting:
+  parameter: sortDirection
+  values:
+  - ASC
+  - DESC
+  default: DESC
+  sort_key: timestamp
+filtering:
+  required:
+  - timestampFrom
+  - timestampTo
+  optional:
+  - service
+  - type
+  - action
+  - message
+  - miniAppId
+  - trackId
+  - conferenceSessionId
+  - userId
+  - changes
+  - secondaryAttributes
+  guidance: >-
+    "For best performance, make your queries as specific as possible (for example, use narrow
+    date ranges and specify event types and services)."
+date_time:
+  format: ISO 8601
+  accepted_examples:
+  - '2023-01-30T12:00:00.000'
+  - '2023-01-30T12:00:00'
+  - '2023-01-30T12:00'
+  - '2023-01-30'
+  - '2023-01-30T12:00:00-05:00'
+  default_offset: UTC when no offset is supplied
+  response_format: full ISO 8601 in UTC, e.g. '2023-01-30T12:00:00.000+00:00'
+idempotency:
+  supported: false
+  note: >-
+    No idempotency key, header or retry contract is documented. The one published operation is a
+    read-only search, so idempotency is not a stated part of the contract. No Idempotency pointer
+    is emitted for this provider.
+versioning:
+  scheme: none-published
+  note: >-
+    The endpoint path carries no version segment (/audit-search-rest/search) and no version header
+    or media-type version is documented.
+  artifact: lifecycle/cafex-communications-lifecycle.yml
+error_envelope:
+  format: non-rfc9457
+  content_type: application/json
+  fields:
+  - timestamp
+  - status
+  - error
+  - path
+  observed_example: '{"timestamp":"2026-08-08T15:21:21.917Z","status":400,"error":"Bad Request","path":"/audit-search-rest/search"}'
+  artifact: errors/cafex-communications-problem-types.yml
+rate_limits:
+  published: false
+  note: >-
+    No rate-limit policy, quota, or 429/Retry-After signalling is documented. The only stated
+    volume control is the pageSize ceiling of 100 results per page.
+request_tracing:
+  published: false
+  note: No request-id / correlation-id header is documented for the Audit Events API.
+data_retention:
+  window: 1 year
+  statement: >-
+    "Events are stored for a maximum of one year. Events older than this period will no longer be
+    available for search."
+x-evidence:
+- url: https://support.cafex.com/support/solutions/articles/73000645442-accessing-audit-information-programmatically
+  http_status: 200
+  fetched: '2026-08-08'
+- url: https://app.cafex.com/audit-search-rest/search
+  http_status: 400
+  fetched: '2026-08-08'
+  note: anonymous POST; error envelope observed verbatim

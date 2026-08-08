@@ -1,0 +1,80 @@
+generated: '2026-08-08'
+method: searched
+source: registry searches across npm, PyPI, CocoaPods, RubyGems and the CafeX GitHub organization
+summary: >-
+  CafeX ships no client library for its current platform or for the Audit Events API. The only
+  first-party published package found anywhere is a legacy iOS CocoaPod for the retired CafeX
+  Meetings product, last released 2018-04-19. Because no maintained SDK exists for the live API
+  surface, no `SDKs` pointer is wired into apis.yml — emitting one would credit CafeX with an SDK
+  it does not ship.
+packages:
+- language: swift
+  registry: cocoapods
+  name: CafeX-Meetings
+  url: https://cocoapods.org/pods/CafeX-Meetings
+  install: pod 'CafeX-Meetings'
+  official: true
+  official_evidence: 'CocoaPods trunk owner: CaféX <cocoapods@cafex.com>'
+  latest_version: 2.3.3
+  last_release: '2018-04-19'
+  status: legacy
+  covers: CafeX Meetings (retired WebRTC meetings product) — not the current CafeX AI platform
+source_repositories:
+- name: cafexcomms/cafex-wrtcbc
+  url: https://github.com/cafexcomms/cafex-wrtcbc
+  language: Ruby
+  description: Custom WebRTC stack used by the CafeX-Meetings CocoaPods
+  last_push: '2022-11-09'
+  packaged: false
+- name: cafexcomms/webrtc-bitcode
+  url: https://github.com/cafexcomms/webrtc-bitcode
+  language: C
+  description: bitcode compliant webrtc iOS native framework
+  last_push: '2018-02-27'
+  packaged: false
+- name: cafexcomms/Recorderjs
+  url: https://github.com/cafexcomms/Recorderjs
+  language: JavaScript
+  description: Fork of a plugin for recording/exporting the output of Web Audio API nodes
+  last_push: '2018-02-20'
+  packaged: false
+  first_party_original: false
+registries_checked:
+- registry: npm
+  query: cafex
+  result: none first-party
+  note: >-
+    Only `cafex-image-editor` (0.0.1-snapshot-01, a Create React App scaffold) surfaced; the
+    `@cafex` scope returns 404. Not credited.
+- registry: pypi
+  query: cafex
+  result: none first-party
+  note: >-
+    A `cafex` project exists but is published by an unrelated "QA Automation Team" with
+    example.com/github.com/me/spam placeholder metadata. Not credited.
+- registry: cocoapods
+  query: CafeX
+  result: 1 first-party (CafeX-Meetings)
+- registry: maven-central
+  result: none found
+- registry: nuget
+  result: none found
+- registry: rubygems
+  result: none found
+- registry: packagist
+  result: none found
+- registry: crates.io
+  result: none found
+- registry: pkg.go.dev
+  result: none found
+x-evidence:
+- url: https://trunk.cocoapods.org/api/v1/pods/CafeX-Meetings
+  http_status: 200
+  fetched: '2026-08-08'
+- url: https://api.github.com/orgs/cafexcomms/repos
+  http_status: 200
+  fetched: '2026-08-08'
+  note: 5 public repositories, all pre-2023, all tied to the retired WebRTC stack
+- url: https://registry.npmjs.org/@cafex%2Fsdk
+  http_status: 404
+  fetched: '2026-08-08'

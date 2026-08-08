@@ -1,0 +1,80 @@
+generated: '2026-08-08'
+method: searched
+source: https://support.cafex.com/support/solutions/articles/73000645442-accessing-audit-information-programmatically
+docs: https://support.cafex.com/support/solutions/articles/73000645442-accessing-audit-information-programmatically
+note: >-
+  CafeX publishes no OpenAPI document, so this profile is transcribed from the published
+  Audit Events API documentation and confirmed against live anonymous probes of both
+  endpoints. No securityScheme could be derived mechanically.
+summary:
+  types:
+  - oauth2
+  - http
+  oauth2_flows:
+  - clientCredentials
+  api_key_in: []
+  bearer_format: opaque access_token
+schemes:
+- name: cafexOAuth2ClientCredentials
+  type: oauth2
+  flow: clientCredentials
+  token_url: https://auth.cafex.com/authserver/token
+  request_content_type: application/x-www-form-urlencoded
+  parameters:
+  - name: grant_type
+    value: client_credentials
+    required: true
+  - name: client_id
+    required: true
+    note: issued in the CafeX tenant UI under Tenant settings > Management > Client applications
+  - name: client_secret
+    required: true
+  response_field: access_token
+  token_lifetime: 8h
+  scopes: []
+  scopes_note: The published documentation declares no scope parameter and no scope values.
+  sources:
+  - https://support.cafex.com/support/solutions/articles/73000645442-accessing-audit-information-programmatically
+- name: cafexBearer
+  type: http
+  scheme: bearer
+  in: header
+  header: Authorization
+  format: 'Bearer {ACCESS TOKEN HERE}'
+  applies_to:
+  - https://app.cafex.com/audit-search-rest/search
+  sources:
+  - https://support.cafex.com/support/solutions/articles/73000645442-accessing-audit-information-programmatically
+credential_issuance:
+  self_service: false
+  path: CafeX tenant UI > three-dot header menu > Tenant settings > Management > Client applications > Add
+  note: >-
+    Client applications are created by a tenant administrator inside the authenticated CafeX
+    product; there is no anonymous developer sign-up that yields API credentials.
+in_product_credentials:
+  note: >-
+    Separately from the platform's own API, CafeX App Studio external data sources support
+    per-user stored credentials for OUTBOUND calls to third-party APIs — OAuth (clientId /
+    clientSecret / tokenUrl), custom auth headers, and HTTP Basic. These are consumer-side
+    credential slots, not authentication to a CafeX API.
+  docs: https://support.cafex.com/support/solutions/articles/73000657127-setting-up-client-credentials
+x-evidence:
+- url: https://auth.cafex.com/authserver/token
+  method: POST
+  http_status: 400
+  fetched: '2026-08-08'
+  body: '{"error":"invalid_client","error_description":"Client ID or the Client secret are invalid"}'
+  note: anonymous probe; live OAuth 2.0 token endpoint confirmed
+- url: https://app.cafex.com/audit-search-rest/search
+  method: POST
+  http_status: 400
+  fetched: '2026-08-08'
+  note: anonymous probe with an empty JSON body; live REST endpoint confirmed
+- url: https://auth.cafex.com/.well-known/openid-configuration
+  http_status: 404
+  fetched: '2026-08-08'
+  note: no OIDC discovery document
+- url: https://auth.cafex.com/.well-known/oauth-authorization-server
+  http_status: 404
+  fetched: '2026-08-08'
+  note: no RFC 8414 authorization-server metadata

@@ -1,23 +1,131 @@
 aid: cafex-communications
 name: CafeX Communications
-description: 'CafeX Communications is a company surfaced via the API Evangelist harvest backlog (source:
-  secondary-market) and added to the network as a stub for full-pipeline profiling.'
+description: 'CafeX Communications, Inc. is a US-headquartered software company (founded 2013)
+  that builds a low-code platform for developing intelligent applications and agentic systems for
+  regulated industries — banking, insurance, healthcare and government. The current CafeX AI platform
+  is delivered as a multi-tenant SaaS at app.cafex.com and is organised into App Studio (App Builder,
+  Flow Builder, Rule Builder, Data Tables and API Lab), Data Studio (Data AI, Data Gateway, Data
+  Visualizer) and Agent Studio (Agent Builder, LM Insights). CafeX began life as a WebRTC and
+  embedded-communications vendor (Fusion Client, Live Assist, CafeX Meetings, later the Challo
+  collaboration workspace) and has since repositioned around AI workflow and process automation.
+  Its one publicly documented, publicly callable API is the CafeX Audit Events API, a tenant-scoped
+  REST search endpoint for audit event data secured with OAuth 2.0 client credentials.'
+image: https://cafex.ai/asset/svg/logo/dark/lockup-wide.svg
 url: https://raw.githubusercontent.com/api-evangelist/cafex-communications/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-secondary-market-listing: https://forgeglobal.com/cafex-communications_stock/
 specificationVersion: '0.20'
 created: '2026-08-08'
 modified: '2026-08-08'
 tags:
 - Company
-apis: []
+- Low-Code
+- Workflow Automation
+- Agentic AI
+- Audit and Compliance
+- Collaboration
+- Enterprise Software
+- Regulated Industries
+- Process Automation
+apis:
+- aid: cafex-communications:audit-events
+  name: CafeX Audit Events API
+  description: 'The CafeX Audit Events API allows the retrieval of audit event data for CafeX
+    tenants. Events can be filtered by a required time range and by optional service, event type,
+    action, user, app, workspace, conference session, message, change and secondary-attribute
+    filters, and are returned as a paged array of event objects with a continuation token. Access is
+    secured with an OAuth 2.0 client-credentials bearer token issued by the CafeX authorization
+    server; tokens are valid for 8 hours and events are retained for a maximum of one year.'
+  humanURL: https://support.cafex.com/support/solutions/articles/73000645442-accessing-audit-information-programmatically
+  baseURL: https://app.cafex.com/audit-search-rest
+  tags:
+  - Audit
+  - Logging
+  - Compliance
+  - Search
+  properties:
+  - type: Documentation
+    url: https://support.cafex.com/support/solutions/articles/73000645442-accessing-audit-information-programmatically
+  - type: APIReference
+    url: https://support.cafex.com/support/solutions/articles/73000645442-accessing-audit-information-programmatically
+  - type: Authentication
+    url: authentication/cafex-communications-authentication.yml
+  - type: Conventions
+    url: conventions/cafex-communications-conventions.yml
+  - type: ErrorCatalog
+    url: errors/cafex-communications-problem-types.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/cafex-communications-domain-security.yml
 - type: Website
-  url: https://forgeglobal.com/cafex-communications_stock/
+  url: https://cafex.ai/
+- type: Documentation
+  url: https://support.cafex.com/support/solutions
+- type: APIReference
+  url: https://support.cafex.com/support/solutions/articles/73000645442-accessing-audit-information-programmatically
+- type: GettingStarted
+  url: https://support.cafex.com/support/solutions/articles/73000646926-building-your-first-app
+- type: Support
+  url: https://support.cafex.com/support/home
+- type: Blog
+  url: https://cafex.ai/blog
+- type: GitHubOrganization
+  url: https://github.com/cafexcomms
+- type: Login
+  url: https://app.cafex.com/
+- type: TermsOfService
+  url: https://cafex.ai/terms-conditions
+- type: PrivacyPolicy
+  url: https://privacy.cafex.ai/
+- type: StatusPage
+  url: https://status.cafex.ai/
+- type: TrustCenter
+  url: security/cafex-communications-trust-center.yml
+- type: Compliance
+  url: https://trust.cafex.ai/
+- type: Authentication
+  url: authentication/cafex-communications-authentication.yml
+- type: Conventions
+  url: conventions/cafex-communications-conventions.yml
+- type: ErrorCatalog
+  url: errors/cafex-communications-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/cafex-communications-lifecycle.yml
+- type: Conformance
+  url: conformance/cafex-communications-conformance.yml
+- type: Packages
+  url: packages/cafex-communications-packages.yml
+- type: LLMsTxt
+  url: llms/cafex-communications-llms.txt
+x-enrichment:
+  date: '2026-08-08'
+  status: enriched
+  artifacts_added: 10
+  pass: local-v1
+x-coverage:
+  state: covered
+  reason: no-machine-readable-spec
+  detail: >-
+    CafeX publishes one real, live, publicly documented REST API — the Audit Events API at
+    app.cafex.com/audit-search-rest/search with an OAuth 2.0 client-credentials token endpoint at
+    auth.cafex.com/authserver/token, both confirmed by anonymous probe — but ships no OpenAPI,
+    AsyncAPI, GraphQL SDL, MCP manifest or agent card anywhere; the contract exists only as prose
+    in a Freshdesk help-center article.
+  evidence:
+  - url: https://app.cafex.com/audit-search-rest/search
+    status: 400
+  - url: https://auth.cafex.com/authserver/token
+    status: 400
+  - url: https://support.cafex.com/support/solutions/articles/73000645442-accessing-audit-information-programmatically
+    status: 200
+  - url: https://app.cafex.com/audit-search-rest/openapi.json
+    status: 404
+  - url: https://auth.cafex.com/.well-known/openid-configuration
+    status: 404
+  checked: '2026-08-08'
