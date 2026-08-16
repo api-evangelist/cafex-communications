@@ -1,0 +1,14 @@
+{
+  "repo": "cafex-communications",
+  "feeds": [
+    {
+      "source": "https://support.cafex.com/support/home",
+      "feed_url": "https://support.cafex.com/support/home",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-08-15T12:22:01Z"
+}
