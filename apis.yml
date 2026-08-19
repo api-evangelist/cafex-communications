@@ -15,7 +15,7 @@ url: https://raw.githubusercontent.com/api-evangelist/cafex-communications/refs/
 x-type: company
 x-source: harvest:secondary-market
 x-secondary-market-listing: https://forgeglobal.com/cafex-communications_stock/
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-08-08'
 modified: '2026-08-08'
 tags:
