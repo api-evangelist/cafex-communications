@@ -10,6 +10,17 @@ description: 'CafeX Communications, Inc. is a US-headquartered software company 
   collaboration workspace) and has since repositioned around AI workflow and process automation.
   Its one publicly documented, publicly callable API is the CafeX Audit Events API, a tenant-scoped
   REST search endpoint for audit event data secured with OAuth 2.0 client credentials.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://cafex.ai/asset/svg/logo/dark/lockup-wide.svg
 url: https://raw.githubusercontent.com/api-evangelist/cafex-communications/refs/heads/main/apis.yml
 x-type: company
