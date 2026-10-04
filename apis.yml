@@ -45,8 +45,8 @@ modified: '2026-08-08'
 tags:
 - Company
 - Low-Code
-- Workflow-Automation
-- Agentic AI
+- Workflow Automation
+- AI Agents
 - Audit and Compliance
 - Collaboration
 - Enterprise Software
@@ -62,6 +62,7 @@ tags_raw:
 - Enterprise Software
 - Regulated Industries
 - Process Automation
+- Workflow-Automation
 apis:
 - aid: cafex-communications:audit-events
   name: CafeX Audit Events API
