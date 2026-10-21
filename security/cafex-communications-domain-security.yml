@@ -1,23 +1,23 @@
-generated: '2026-08-08'
+generated: '2026-10-20'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
 - host: cafex.ai
   https: true
   tls_version: TLSv1.3
-  cert_expires: Oct 18 09:09:37 2026 GMT
+  cert_expires: Dec 17 08:14:41 2026 GMT
   hsts: true
   hsts_max_age: 31536000
 - host: support.cafex.com
   https: true
   tls_version: TLSv1.3
-  cert_expires: Oct 13 20:42:14 2026 GMT
+  cert_expires: Dec 11 22:55:41 2026 GMT
   hsts: true
   hsts_max_age: 31536000
 - host: app.cafex.com
   https: true
   tls_version: TLSv1.3
-  cert_expires: Oct 26 01:53:11 2026 GMT
+  cert_expires: Dec 25 00:56:14 2026 GMT
   hsts: true
   hsts_max_age: 31536000
 domains:
@@ -30,12 +30,12 @@ domains:
 - domain: cafex.com
   dnssec: false
   caa:
-  - 128 issue "sectigo.com"
   - 128 issuewild "comodoca.com"
   - 128 issuewild "letsencrypt.org"
   - 128 issuewild "sectigo.com"
   - 128 issue "amazonaws.com"
   - 128 issue "comodoca.com"
+  - 128 issue "letsencrypt.org"
   spf: true
   dmarc: true
   dmarc_policy: quarantine

@@ -1,0 +1,75 @@
+generated: '2026-10-20'
+method: probed
+source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
+registry: all/0-working/vendors.yml
+areas_vocabulary:
+- documentation
+- developer-portal
+- api-gateway
+- cdn
+- hosting
+- sdk-generation
+- api-collections
+- status-page
+- support
+- community
+- identity
+- mcp-hosting
+vendors:
+- vendor: cloudflare
+  name: Cloudflare
+  area: cdn
+  host: support.cafex.com
+  evidence: header:cf-ray
+  signal: header
+  confidence: high
+  kin_score:
+  - https_enforced
+  - hsts
+- vendor: netlify
+  name: Netlify
+  area: hosting
+  host: cafex.ai
+  evidence: header:x-nf-request-id
+  signal: header
+  confidence: high
+  kin_score: []
+- vendor: instatus
+  name: Instatus
+  area: status-page
+  host: status.cafex.ai
+  evidence: cname:instatus.com
+  signal: cname
+  confidence: high
+  kin_score:
+  - status_page
+- vendor: freshdesk
+  name: Freshdesk
+  area: support
+  host: support.cafex.com
+  evidence: cname:freshdesk.com
+  signal: cname
+  confidence: high
+  kin_score:
+  - support_channel
+reliance:
+  areas_vendor_served:
+  - cdn
+  - hosting
+  - status-page
+  - support
+  vendor_count: 4
+  areas_observed: 12
+  share_of_observable_areas: 0.333
+  note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
+    cannot tell those apart
+checked:
+- 'docs-platform: custom'
+- cafex.ai (Website)
+- support.cafex.com (Documentation)
+- support.cafex.com (APIReference)
+- support.cafex.com (GettingStarted)
+- support.cafex.com (Support)
+- app.cafex.com (Login)
+- status.cafex.ai (StatusPage)
+- app.cafex.com (baseURL)

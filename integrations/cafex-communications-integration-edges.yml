@@ -1,0 +1,16 @@
+generated: '2026-10-20'
+method: none
+source:
+- https://zapier.com/apps/cafex-communications/integrations
+- https://n8n.io/integrations/cafex-communications/
+- https://composio.dev/toolkits/cafex-communications
+- https://monid.ai/tools/cafex-communications
+checked:
+- https://composio.dev/toolkits/cafex-communications
+- https://monid.ai/tools/cafex-communications
+- https://n8n.io/integrations/cafex-communications/
+- https://zapier.com/apps/cafex-communications/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
