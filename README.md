@@ -64,32 +64,95 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-CafeX Communications, Inc. (founded 2013) builds a low-code platform for developing intelligent
-applications and agentic systems for regulated industries — banking, insurance, healthcare and
-government. The CafeX AI platform is delivered as multi-tenant SaaS at `app.cafex.com` and is
-organised into App Studio (App Builder, Flow Builder, Rule Builder, Data Tables, API Lab), Data
-Studio (Data AI, Data Gateway, Data Visualizer) and Agent Studio (Agent Builder, LM Insights).
-CafeX began as a WebRTC and embedded-communications vendor (Fusion Client, Live Assist, CafeX
-Meetings, later the Challo collaboration workspace) and has since repositioned around AI workflow
-and process automation.
+CafeX Communications, Inc. is a US-headquartered software company (founded 2013) that builds a low-code platform for developing intelligent applications and agentic systems for regulated industries — banking, insurance, healthcare and government. The current CafeX AI platform is delivered as a multi-tenant SaaS at app.cafex.com and is organised into App Studio (App Builder, Flow Builder, Rule Builder, Data Tables and API Lab), Data Studio (Data AI, Data Gateway, Data Visualizer) and Agent Studio (Agent Builder, LM Insights). CafeX began life as a WebRTC and embedded-communications vendor (Fusion Client, Live Assist, CafeX Meetings, later the Challo collaboration workspace) and has since repositioned around AI workflow and process automation. Its one publicly documented, publicly callable API is the CafeX Audit Events API, a tenant-scoped REST search endpoint for audit event data secured with OAuth 2.0 client credentials.
 
-## Public API surface
+**Areas:** Company · Low-Code · Workflow Automation · AI Agents · Audit and Compliance · Collaboration · Enterprise Software · Regulated Industries · Process Automation
 
-CafeX publishes one public, callable API:
+## CafeX Communications on APIs.io
 
-- **CafeX Audit Events API** — `POST https://app.cafex.com/audit-search-rest/search`, a tenant-scoped
-  JSON search over audit event data, secured with an OAuth 2.0 client-credentials bearer token from
-  `POST https://auth.cafex.com/authserver/token`. Cursor pagination (`page.continuationToken`,
-  `pageSize` max 100), ISO 8601 timestamps, one-year event retention, eight-hour access tokens.
-  Both endpoints were confirmed live by anonymous probe on 2026-08-08.
+Everything profiled for CafeX Communications is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cafex-communications/](https://apis.io/providers/cafex-communications/)** — or go straight to one of the APIs or properties below.
 
-CafeX publishes **no** OpenAPI, AsyncAPI, GraphQL SDL, MCP server or A2A agent card, and no
-`/.well-known/` discovery document on any host. The API contract exists only as prose in a help
-center article. Note that `app.cafex.com` answers HTTP 200 with an SPA HTML shell for every
-`/.well-known/*` path — those are not documents.
+### APIs (1)
 
-- Website: https://cafex.ai/ (cafex.com redirects here)
-- Help center: https://support.cafex.com/support/solutions
-- Status: https://status.cafex.ai/ · Trust center: https://trust.cafex.ai/
-- GitHub: https://github.com/cafexcomms (5 legacy WebRTC repos, none updated since 2022)
-- Secondary-market listing: https://forgeglobal.com/cafex-communications_stock/
+- [CafeX Audit Events API](https://apis.io/apis/cafex-communications/audit-events/) — The CafeX Audit Events API allows the retrieval of audit event data for CafeX tenants. Events can be filtered by a required time range and by optional…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Cafex Communications Authentication](https://apis.io/security/cafex-communications/cafex-communications-authentication/)
+- [Cafex Communications Domain Security](https://apis.io/security/cafex-communications/cafex-communications-domain-security/)
+- [Cafex Communications Trust Center](https://apis.io/security/cafex-communications/cafex-communications-trust-center/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://cafex.ai/)
+- [Documentation](https://support.cafex.com/support/solutions)
+- [Getting started](https://support.cafex.com/support/solutions/articles/73000646926-building-your-first-app)
+- [API reference](https://support.cafex.com/support/solutions/articles/73000645442-accessing-audit-information-programmatically)
+- [Support](https://support.cafex.com/support/home)
+- [Blog](https://cafex.ai/blog)
+- [Compliance](https://trust.cafex.ai/)
+- [Terms of service](https://cafex.ai/terms-conditions)
+- [Privacy policy](https://privacy.cafex.ai/)
+- [GitHub](https://github.com/cafexcomms)
+- [Status](https://status.cafex.ai/)
+
+## API Evangelist rating
+
+**Kin Score 33.0** — thin · rubric 0.24.0 · scored 2026-10-20
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 54.8 |
+| Access clarity | 43.4 |
+
+**Agent readiness 2.5** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cafex-communications/](https://apis.io/providers/cafex-communications/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for CafeX Communications: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cafex-communications/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
